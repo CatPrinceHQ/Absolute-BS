@@ -91,14 +91,14 @@ if (!window.isDevVersion) setInterval(save, 5000);
 function exportGame() {
   save()
   navigator.clipboard.writeText(btoa(JSON.stringify(game))).then(function() {
-    alert("Copied to clipboard!")
+    alert("已复制到剪贴板!")
   }, function() {
-    alert("Error copying to clipboard, try again...")
+    alert("复制到剪贴板时出错，请重试...")
   });
 }
 
 function importGame() {
-  loadgame = JSON.parse(atob(prompt("Input your save here:")))
+  loadgame = JSON.parse(atob(prompt("在这里粘贴你的存档:")))
   if (loadgame && loadgame != null && loadgame != "") {
     reset()
     loadGame(loadgame)
@@ -106,7 +106,7 @@ function importGame() {
 		location.reload()
   }
   else {
-    alert("Invalid input.")
+    alert("输入无效.")
   }
 }
 
@@ -671,7 +671,7 @@ function addItem(x,y,z=0) {
 		for (i=0;i<game.patterns.length;i++) {if (y == game.patterns[i][0] && z == game.patterns[i][1]) listItemPoint = i}
 		if (listItemPoint == -1) {game.patterns.push([y,z,1])}
 		else {game.patterns[listItemPoint][2]++}
-		alert("Got a " + patternSpecialTypes[z] + patternNames[y] + " pattern!")
+		alert("获得 " + patternSpecialTypes[z] + patternNames[y] + " 图案!")
 	}
 	else if (x==2) {
 		listItemPoint = -1
@@ -679,14 +679,14 @@ function addItem(x,y,z=0) {
 		if (listItemPoint == -1) {game.relics.push([y,1])}
 		else {game.relics[listItemPoint][1]++}
 		calculateRelicPotionMultipliers()
-		alert("Got a " + relicNames[y] + " relic!")
+		alert("获得 " + relicNames[y] + " 遗物!")
 	}
 	else if (x==3) {
 		listItemPoint = -1
 		for (i=0;i<game.potions.length;i++) {if (y == game.potions[i][0]) listItemPoint = i}
 		if (listItemPoint == -1) {game.potions.push([y,1])}
 		else {game.potions[listItemPoint][1]++}
-		alert("Got a " + potionNames[y] + "!")
+		alert("获得 " + potionNames[y] + "!")
 	}
 	displayItems(game.currentItemScreen)
 }
@@ -977,7 +977,7 @@ function purchaseWorld() {
 		}
 		addItem(0,1)
 		game.cratesNotChecked++
-		alert("Got an advanced crate for unlocking world " + game.worldsUnlocked + "!")
+		alert("获得了高级箱子用于解锁世界 " + game.worldsUnlocked + "!")
 		nextWorld()
 	}
 }
